@@ -38,9 +38,8 @@ def process_adj_price(stk_path,adj_fct_path,output_path):
         df_today['adj_close'] = df_today['cum_adjf']*df_today['close']
         if not df_yesterday.empty:
             df = df_today.merge(df_yesterday, how='inner', on='code',suffixes=('_today', '_yesterday'))
-            df['adj_return'] = df['adj_close_today']/df['adj_close_yesterday']
+            df['adj_return'] = df['adj_close_today']/df['adj_close_yesterday']-1.0
             df = df[['code','adj_return']]
             df.to_csv(output_f,index=False)
+            print("============= Processed adj return on date: {}.  =============".format(date))
         df_yesterday = df_today
-
-df1 = process_adj_price(stk_path,adj_fct_path,output_path)

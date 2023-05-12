@@ -51,7 +51,7 @@ class DataLoader(object):
     def find_date_csv_path(path,date):
         res = path+date+'.csv'
         if not os.path.exists(res):
-            raise Exception("CSV file does not exist for the corresponding date!")
+            return None
         return res
     
     @staticmethod
@@ -75,6 +75,8 @@ class DataLoader(object):
             i = start+offset
             d = self.trade_dates[i]
             date_offset_path = self.find_date_csv_path(path,str(d))
+            if not date_offset_path:
+                continue
             if fields != 'All':
                 df = pd.read_csv(date_offset_path,usecols = fields)
             else:
@@ -92,12 +94,14 @@ class DataLoader(object):
                 return df[df['code']==int(code)]
             return df
         elif tabname == 'adj_fct':
-            df = self.load_multiple_date_csv(self.adj_fct_path,date,window)
+            path = self.path.get_data_path(tabname)
+            df = self.load_multiple_date_csv(tabname,date,window)
             if code is not None:
                 return df[df['code']==int(code)]
             return df
         elif tabname == 'adj_return':
-            df = self.load_multiple_date_csv(self.adj_return_path,date,window)
+            path = self.path.get_data_path(tabname)
+            df = self.load_multiple_date_csv(path,date,window)
             if code is not None:
                 return df[df['code']==int(code)]
             return df
