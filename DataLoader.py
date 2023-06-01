@@ -85,7 +85,11 @@ class DataLoader(object):
                 df['date'] = d
             res = df if res.empty else pd.concat([res, df],ignore_index=True)
         return res
-
+    
+    def load_univ(self,univ_name,date,window=1):
+        path = self.path.get_univ_path(univ_name)
+        df = self.load_multiple_date_csv(path,date,window)
+        return df
 
     def loading(self,tabname,date,fields='All',window=1,code=None,name=None):
         if tabname == 'stk_1min':
@@ -163,4 +167,4 @@ class DataLoader(object):
             return df
         else:
             raise Exception("Tab name is not supported! Supported tabnames are:\n stk_1min,\n adj_fct,\n idx,lmt,\n mkt_val,\n sw,\n univ,\n lst_date,\n st_date,\n halt_date")
-d = DataLoader(root_path='/Users/siwu/Downloads/QRData/Data/') 
+        

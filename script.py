@@ -1,19 +1,20 @@
 import sys
 from alpha.nDayRetStd import nDayRetStd
+from alpha.nDayTurnoverStd import nDayTurnoverStd
 from alpha.nDayTurnoverMean import nDayTurnoverMean
 
 configs = {
-    'turnover_5day_mean':{'alpha':'nDayTurnoverMean',
+    'turnover_5day_std':{'alpha':'nDayTurnoverStd',
                           'params':{
                               'days':5,
                               'short':True}
                          },
-    'turnover_20day_mean':{'alpha':'nDayTurnoverMean',
+    'turnover_20day_std':{'alpha':'nDayTurnoverStd',
                           'params':{
                               'days':20,
                               'short':True}
                          },
-    'turnover_60day_mean':{'alpha':'nDayTurnoverMean',
+    'turnover_60day_std':{'alpha':'nDayTurnoverStd',
                           'params':{
                               'days':60,
                               'short':True}

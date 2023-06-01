@@ -5,6 +5,12 @@ class PathConfig():
 
     def get_alpha_path(self,alpha_name):
         return self.alphapath+alpha_name+'/'
+
+    def get_merged_alpha_path(self,alpha_name):
+        return self.alphapath+alpha_name+'/'+'merged.csv'
+    
+    def get_univ_path(self,univ_name):
+        return self.datapath+'univ/'+univ_name+'/'
     
     def get_data_path(self,data_name):
         return self.datapath+data_name+'/'
