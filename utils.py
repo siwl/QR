@@ -29,7 +29,7 @@ class AlphaEval():
         df = pd.DataFrame()
         cols = []
         for a in self.alphas:
-            col_a = 'alpha'+a
+            col_a = 'alpha_'+a
             merged_path = self.path.get_merged_alpha_path(a)
             if not os.path.exists(merged_path):
                 self.merge_df(a)
@@ -80,6 +80,3 @@ class AlphaEval():
                 l.append(a+'_'+u)
         plt.title("Cum PnL")
         plt.legend(l)
-
-    def plot_corr(self):
-        self.corr_mat.style
